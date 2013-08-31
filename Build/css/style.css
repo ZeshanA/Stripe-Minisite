@@ -1,0 +1,425 @@
+/* ==========================================================================
+   HTML5 Boilerplate styles - h5bp.com (generated via initializr.com)
+   ========================================================================== */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0; }
+
+img {
+  vertical-align: middle; }
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0; }
+
+textarea {
+  resize: vertical; }
+
+/* ==========================================================================
+   Fonts
+   ========================================================================== */
+@font-face {
+  font-family: MuseoSans100;
+  font-weight: normal;
+  font-style: normal;
+  src: url(../fonts/MuseoSans_100-webfont.eot);
+  src: url(../fonts/MuseoSans_100-webfont.eot?#iefix) format("embedded-opentype"), url(../fonts/MuseoSans_100-webfont.woff) format("woff"), url(../fonts/MuseoSans_100-webfont.ttf) format("truetype"), url(../fonts/MuseoSans_100-webfont.svg#MuseoSans100) format("svg"); }
+
+@font-face {
+  font-family: MuseoSans300;
+  font-weight: normal;
+  font-style: normal;
+  src: url(../fonts/MuseoSans_300-webfont.eot);
+  src: url(../fonts/MuseoSans_300-webfont.eot?#iefix) format("embedded-opentype"), url(../fonts/MuseoSans_300-webfont.woff) format("woff"), url(../fonts/MuseoSans_300-webfont.ttf) format("truetype"), url(../fonts/MuseoSans_300-webfont.svg#MuseoSans300) format("svg"); }
+
+@font-face {
+  font-family: IconFont;
+  font-weight: normal;
+  font-style: normal;
+  src: url(../fonts/icomoon.eot);
+  src: url(../fonts/icomoon.eot?#iefix) format("embedded-opentype"), url(../fonts/icomoon.woff) format("woff"), url(../fonts/icomoon.ttf) format("truetype"), url(../fonts/icomoon.svg#IconFont) format("svg"); }
+
+/* ==========================================================================
+   Mixins & Document-Wide Variables
+   ========================================================================== */
+@-webkit-keyframes doors {
+  to {
+    -webkit-transform: translateY(0); } }
+
+@-moz-keyframes doors {
+  to {
+    -moz-transform: translateY(0); } }
+
+@-o-keyframes doors {
+  to {
+    -o-transform: translateY(0); } }
+
+@keyframes doors {
+  to {
+    transform: translateY(0); } }
+
+@-webkit-keyframes fadeIn {
+  to {
+    opacity: 1; } }
+
+@-moz-keyframes fadeIn {
+  to {
+    opacity: 1; } }
+
+@-o-keyframes fadeIn {
+  to {
+    opacity: 1; } }
+
+@keyframes fadeIn {
+  to {
+    opacity: 1; } }
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+body {
+  color: #fff;
+  font-family: MuseoSans300, "Helvetica Neue", "Open Sans", "Helvetica", "Arial", sans-serif; }
+
+.content {
+  width: 320px;
+  height: 424px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto; }
+
+.header, .formWrap, .submitWrap {
+  padding: 23px;
+  opacity: 0; }
+
+.header, .submitWrap {
+  -webkit-animation: fadeIn 0.5s forwards, doors 0.5s forwards 0.5s;
+  -moz-animation: fadeIn 0.5s forwards, doors 0.5s forwards 0.5s;
+  animation: fadeIn 0.5s forwards, doors 0.5s forwards 0.5s; }
+
+.button {
+  padding: 10px;
+  background-color: #2d3948;
+  border-radius: 6px;
+  box-shadow: inset 0 -2px 0 #1d252f;
+  cursor: pointer;
+  -webkit-transition: background-color ease 0.2s;
+  -moz-transition: background-color ease 0.2s;
+  transition: background-color ease 0.2s; }
+  .button:hover {
+    background-color: #252f3b;
+    box-shadow: inset 0 -2px 0 #151b22;
+    -webkit-transition: background-color ease 0.1s;
+    -moz-transition: background-color ease 0.1s;
+    transition: background-color ease 0.1s; }
+  .button:active {
+    background-color: #1d252f;
+    box-shadow: none;
+    -webkit-transform: translateY(1px);
+    -moz-transform: translateY(1px);
+    -ms-transform: translateY(1px);
+    -o-transform: translateY(1px);
+    transform: translateY(1px); }
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.header {
+  position: relative;
+  background-color: #485b73;
+  border-radius: 12px 12px 0 0;
+  box-shadow: inset 0 -2px 0 #1d252f;
+  z-index: 1;
+  -webkit-transform: translateY(128px);
+  -moz-transform: translateY(128px);
+  -ms-transform: translateY(128px);
+  -o-transform: translateY(128px);
+  transform: translateY(128px);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+  .header img, .header div {
+    display: inline-block;
+    vertical-align: middle; }
+
+.serviceIcon {
+  width: 57px;
+  background-color: #fff;
+  border-radius: 10px; }
+
+.serviceDescWrap {
+  position: relative;
+  margin-left: 15px; }
+
+.dropdownWrap.active .dropdown {
+  position: relative;
+  border-radius: 6px 6px 0 0;
+  box-shadow: none;
+  z-index: 2; }
+  .dropdownWrap.active .dropdown:hover {
+    box-shadow: none; }
+  .dropdownWrap.active .dropdown:active {
+    box-shadow: none; }
+.dropdownWrap.active .dropdownSelect {
+  visibility: visible;
+  opacity: 1;
+  z-index: 1; }
+.dropdownWrap .arrow {
+  margin-left: 0.5em;
+  font-size: 0.5em;
+  vertical-align: middle; }
+.dropdownWrap .dropdownSelect {
+  width: 130%;
+  position: absolute;
+  background-color: #1d252f;
+  border-radius: 0 6px 6px 6px;
+  z-index: -1;
+  -webkit-transition: opacity 0.2s ease;
+  -moz-transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease;
+  opacity: 0;
+  visibility: hidden; }
+  .dropdownWrap .dropdownSelect li {
+    padding: 10px;
+    cursor: pointer; }
+    .dropdownWrap .dropdownSelect li:first-child {
+      border-radius: 0 6px 0 0; }
+    .dropdownWrap .dropdownSelect li:last-child {
+      border-radius: 0 0 6px 6px; }
+    .dropdownWrap .dropdownSelect li:hover {
+      background-color: #252f3b; }
+    .dropdownWrap .dropdownSelect li:active {
+      background-color: #151b22; }
+
+/* ==========================================================================
+   Form
+   ========================================================================== */
+.formWrap {
+  background-color: #2d3948;
+  -webkit-animation: fadeIn 0.85s forwards 0.5s;
+  -moz-animation: fadeIn 0.85s forwards 0.5s;
+  animation: fadeIn 0.85s forwards 0.5s; }
+
+.formRow {
+  width: 100%;
+  margin-bottom: 20px;
+  display: table; }
+  .formRow:first-child {
+    margin-top: -2px; }
+  .formRow:last-child {
+    margin: 0; }
+
+.inputWrap {
+  width: 65.5%;
+  cursor: text;
+  display: inline-block;
+  vertical-align: middle; }
+  .inputWrap.small {
+    width: 30%;
+    float: right; }
+    .inputWrap.small .input, .inputWrap.small .plainInput {
+      text-align: center; }
+  .inputWrap.amount {
+    width: 50.5%; }
+    .inputWrap.amount .plainInput {
+      width: 59%; }
+    .inputWrap.amount .currencyCode {
+      opacity: 0.3; }
+  .inputWrap.currency {
+    width: 45%;
+    float: right; }
+  .inputWrap.cardNum .input {
+    letter-spacing: 0.08em; }
+  .inputWrap.cardCode .input {
+    letter-spacing: 0.6em;
+    text-indent: 0.6em; }
+  .inputWrap.expiry .input {
+    text-align: center; }
+  .inputWrap.expiry .plainInput {
+    width: 38%;
+    letter-spacing: 0.2em; }
+
+.inputLabel {
+  margin-bottom: 6px;
+  color: #a7a8aa;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  vertical-align: middle; }
+  .inputLabel span {
+    display: inline-block;
+    vertical-align: middle; }
+  .inputLabel .textIcon {
+    margin-right: 4px;
+    font-family: 'IconFont';
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -o-font-smoothing: antialiased;
+    -ms-font-smoothing: antialiased;
+    font-smoothing: antialiased; }
+    .cardCode .inputLabel .textIcon {
+      font-size: 14px; }
+
+.input, .plainInput, .toggleWrap {
+  margin: 0;
+  color: #fff;
+  border: none;
+  box-sizing: border-box;
+  display: block;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none; }
+  .input span, .input input, .input div, .plainInput span, .plainInput input, .plainInput div, .toggleWrap span, .toggleWrap input, .toggleWrap div {
+    display: inline-block;
+    vertical-align: middle; }
+
+.input, .toggleWrap {
+  width: 100%;
+  height: 34px;
+  padding: 10px;
+  font-size: 0.9em;
+  background-color: #485b73;
+  border-radius: 6px;
+  -webkit-transition: background-color ease 0.2s;
+  -moz-transition: background-color ease 0.2s;
+  transition: background-color ease 0.2s; }
+  .input:hover, .toggleWrap:hover {
+    background-color: #5c7492;
+    -webkit-transition: background-color ease 0.1s;
+    -moz-transition: background-color ease 0.1s;
+    transition: background-color ease 0.1s; }
+  .input:focus, .input.focus, .toggleWrap:focus, .toggleWrap.focus {
+    background-color: #546a86;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4), inset 0 0px 2px rgba(0, 0, 0, 0.3); }
+
+.plainInput {
+  background-color: transparent; }
+
+.toggleWrap {
+  position: relative;
+  background-color: #344254;
+  cursor: pointer; }
+  .toggleWrap:hover {
+    background-color: #344254; }
+  .toggleWrap .toggle {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    margin: -10px 0 0 -10px;
+    background: -webkit-linear-gradient( #5c7492, #485b73) top;
+    background: linear-gradient( #5c7492, #485b73) top;
+    border-radius: 6px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    z-index: 1;
+    -webkit-transition: background ease 0.2s;
+    -moz-transition: background ease 0.2s;
+    transition: background ease 0.2s; }
+  .toggleWrap:hover .toggle {
+    background: -webkit-linear-gradient( #5c7492, #5c7492) top;
+    background: linear-gradient( #5c7492, #5c7492) top;
+    -webkit-transition: background-color ease 0.1s;
+    -moz-transition: background-color ease 0.1s;
+    transition: background-color ease 0.1s; }
+  .toggleWrap:active .toggle {
+    background: -webkit-linear-gradient( #485b73, #485b73) top;
+    background: linear-gradient( #485b73, #485b73) top;
+    box-shadow: none; }
+  .toggleWrap .option {
+    width: 50%;
+    position: relative;
+    left: 5px;
+    text-align: center;
+    opacity: 0.3;
+    z-index: 2; }
+  .toggleWrap .option.active {
+    left: -5px;
+    opacity: 1; }
+
+/* ==========================================================================
+   Submit
+   ========================================================================== */
+.submitWrap {
+  background-color: #485b73;
+  border-radius: 0 0 12px 12px;
+  box-shadow: inset 0 2px 0 #1d252f;
+  -webkit-transform: translateY(-129px);
+  -moz-transform: translateY(-129px);
+  -ms-transform: translateY(-129px);
+  -o-transform: translateY(-129px);
+  transform: translateY(-129px); }
+
+.submit {
+  text-align: center; }
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+@media print {
+  * {
+    background-color: transparent !important;
+    color: #000 !important;
+    /* Black prints faster: h5bp.com/s */
+    box-shadow: none !important;
+    text-shadow: none !important; }
+
+  a,
+  a:visited {
+    text-decoration: underline; }
+
+  a[href]:after {
+    content: " (" attr(href) ")"; }
+
+  abbr[title]:after {
+    content: " (" attr(title) ")"; }
+
+  /*
+   * Don't show links for images, or javascript/internal links
+   */
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: ""; }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid; }
+
+  thead {
+    display: table-header-group;
+    /* h5bp.com/t */ }
+
+  tr,
+  img {
+    page-break-inside: avoid; }
+
+  img {
+    max-width: 100% !important; }
+
+  @page {
+    margin: 0.5cm; }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3; }
+
+  h2,
+  h3 {
+    page-break-after: avoid; } }

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html class="no-js">
+    <head>
+
+        <!-- Meta -->
+        <meta charset="utf-8">
+
+        <title>Untitled Page</title>
+        <meta name="description" content="Description goes here.">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Stylesheets -->
+        <link rel='stylesheet' href='css/normalize.css'>
+<link rel='stylesheet' href='css/style.css'>
+        
+        <!-- Hammer reload -->
+          <script>
+            setInterval(function(){
+              try {
+                if(typeof ws != 'undefined' && ws.readyState == 1){return true;}
+                ws = new WebSocket('ws://'+(location.host || 'localhost').split(':')[0]+':35353')
+                ws.onopen = function(){ws.onclose = function(){document.location.reload()}}
+                ws.onmessage = function(){
+                  var links = document.getElementsByTagName('link'); 
+                    for (var i = 0; i < links.length;i++) { 
+                    var link = links[i]; 
+                    if (link.rel === 'stylesheet' && !link.href.match(/typekit/)) { 
+                      href = link.href.replace(/((&|\?)hammer=)[^&]+/,''); 
+                      link.href = href + (href.indexOf('?')>=0?'&':'?') + 'hammer='+(new Date().valueOf());
+                    }
+                  }
+                }
+              }catch(e){}
+            }, 1000)
+          </script>
+        <!-- /Hammer reload -->
+      
+
+        <!-- Icons -->
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114-precomposed.png" />
+
+        <!--[if lt IE 9]>
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+
+        <div class="content">
+
+            <!-- Header -->
+            <header class="header">
+
+                <img src="img/icon@2x.png" class="serviceIcon" alt="Web Design Icon"/>
+                <div class="serviceDescWrap">
+                    <div class="dropdownWrap">
+                        <div class="dropdown button">
+                            Web Design
+                            <span class="arrow">&#x25BC;</span>
+                        </div>
+                        <ul class="dropdownSelect">
+                            <li>Icon Design</li>
+                            <li>Icon Design</li>
+                            <li>Web Design/Dev</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </header>
+                
+            <!-- Form -->
+            <div class="formWrap" role="main">
+
+                <div class="errors"></div>
+
+                <form action="http://localhost:3000/" method="POST" class="paymentForm">
+
+                    <div class="formRow hasToggle">
+
+                        <section class="inputWrap amount">
+                            <div class="inputLabel">
+                                <span class="textIcon"></span>
+                                <span>Amount</span>
+                            </div>
+                            <div class="input">
+                                <span class="currencySymbol">£</span>
+                                <input type="text" name="amount" maxlength="7" value="500" class="plainInput"/>
+                                <span class="currencyCode">GBP</span>
+                            </div>
+                        </section>
+
+                        <section class="inputWrap currency">
+                            <div class="inputLabel">
+                                <span class="textIcon"></span>
+                                <span>Currency</span>
+                            </div>
+                            <div class="toggleWrap">
+                                <div class="toggle"></div>
+                                <span class="option active">£ GBP</span><span class="option">$ USD</span>
+                            </div>
+                            <input value="GBP" type="hidden" name="currency"/>
+                        </section>
+
+                    </div>
+
+                    <div class="formRow">
+                        <section class="inputWrap cardNum">
+                            <div class="inputLabel">
+                                <span class="textIcon"></span>
+                                <span>Card Number</span>
+                            </div>
+                            <input type="text" data-stripe="number" value="ehiludfihuldfshiudfsiuhdfshiadfsiuadfshiudfiahudfasihudahiudaihdfhidfahiadsfhudafhiu" class="input"/>
+                        </section>
+                        <section class="inputWrap small cardCode">
+                            <div class="inputLabel">
+                                <span class="textIcon"></span>
+                                <span>CVC</span>
+                            </div>
+                            <input type="text" maxlength="3" data-stripe="cvc" value="123" class="input"/>
+                        </section>
+                    </div>
+
+                    <div class="formRow">
+
+                        <section class="inputWrap name">
+                            <div class="inputLabel">
+                                <span class="textIcon"></span>
+                                <span>Name on Card</span>
+                            </div>
+                            <input type="text" name="name" data-stripe="name" value="Walter White" class="input"/>
+                        </section>
+                        <section class="inputWrap small expiry">
+                            <div class="inputLabel">
+                                <span class="textIcon"></span>
+                                <span>Expires</span>
+                            </div>
+                            <div class="input" >
+                                <input type="text" maxlength="2" data-stripe="exp-month" value="09" class="plainInput"/>
+                                <span class="slash">/</span>
+                                <input type="text" maxlength="2" data-stripe="exp-year" value="15" class="plainInput"/>
+                            </div>
+                        </section>
+
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- Submit -->
+            <div class="submitWrap">
+                <div class="submit button">Submit Payment</div>
+            </div>
+
+        </div>
+
+        <!-- jQuery -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/lib/jquery-1.10.1.min.js"><\/script>')</script>
+
+        <!-- Scripts -->
+
+        <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+        <script src='js/plugins.js'></script>
+<script src='js/main.js'></script>
+
+        <!-- Google Analytics -->
+        <script>
+        (function(e,t,n,r,i,s,o){e["GoogleAnalyticsObject"]=i;e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},e[i].l=1*new Date;s=t.createElement(n),o=t.getElementsByTagName(n)[0];s.async=1;s.src=r;o.parentNode.insertBefore(s,o)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create","UA-43482512-1","zeshan.me");ga("send","pageview")
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,541 @@
+/* ==========================================================================
+   HTML5 Boilerplate styles - h5bp.com (generated via initializr.com)
+   ========================================================================== */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+img {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Fonts
+   ========================================================================== */
+
+@include font-face(MuseoSans100, '../fonts/MuseoSans_100-webfont');
+@include font-face(MuseoSans300, '../fonts/MuseoSans_300-webfont');
+@include font-face(IconFont, '../fonts/icomoon');
+
+/* ==========================================================================
+   Mixins & Document-Wide Variables
+   ========================================================================== */
+
+$lightBlue: #485b73;
+$hoverLightBlue: lighten($lightBlue, 10%);
+$altLightBlue: darken($lightBlue, 10%);
+
+$darkBlue: #2d3948;
+$hoverDarkBlue: darken($darkBlue, 4%);
+$activeDarkBlue: darken($hoverDarkBlue, 4%);
+
+$outerBoxRadius: 12px;
+$formHeight: 256px;
+$innerBoxPadding: 10px;
+$innerBoxRadius: 6px;
+
+$dimOpacity: 0.3;
+$transitionTime: 0.2s;
+
+$museoSans100: MuseoSans100, 'Helvetica Neue', 'Open Sans', 'Helvetica', 'Arial', sans-serif;
+$museoSans300: MuseoSans300, 'Helvetica Neue', 'Open Sans', 'Helvetica', 'Arial', sans-serif;
+$fontFamily: $museoSans300;
+
+@include keyframes(doors) {
+    from {}
+    to {
+        @include transform(translateY(0));
+    }
+}
+
+@include keyframes(fadeIn) {
+    from {}
+    to {
+        opacity: 1;
+    }
+}
+
+@mixin prefix($property, $value) {
+    -webkit-#{$property}: $value;
+    -moz-#{$property}: $value;
+    -o-#{$property}: $value;
+    -ms-#{$property}: $value;
+    #{$property}: $value;
+}
+
+@mixin inlineBlock {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@mixin pageCentre {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+@mixin resetInput {
+    margin: 0;
+    color: #fff;
+    border: none;
+    box-sizing: border-box;
+    display: block;
+    outline: none;
+    @include appearance(none);
+}
+
+@mixin invisible {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+body {
+    color: #fff;
+    font-family: $fontFamily;
+}
+
+.content {
+    width: 320px;
+    height: 424px;
+    @include pageCentre;
+}
+
+.header, .formWrap, .submitWrap {
+    padding: 23px;
+    opacity: 0;
+}
+
+.header, .submitWrap {
+    @include animation(fadeIn 0.5s forwards, doors 0.5s forwards 0.5s);
+}
+
+.button {
+    padding: $innerBoxPadding;
+    background-color: $darkBlue;
+    border-radius: $innerBoxRadius;
+    $boxShadow: -2px;
+    box-shadow: inset 0 $boxShadow 0 $activeDarkBlue;
+    cursor: pointer;
+    @include transition(background-color ease $transitionTime);
+
+    &:hover {
+        background-color: $hoverDarkBlue;
+        box-shadow: inset 0 $boxShadow 0 darken($activeDarkBlue, 4%);
+        @include transition(background-color ease ($transitionTime) - 0.1s);
+    }
+
+    &:active {
+        background-color: $activeDarkBlue;
+        box-shadow: none;
+        @include transform(translateY(1px));
+    }
+
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+.header {
+    position: relative;
+    background-color: $lightBlue;
+    border-radius: $outerBoxRadius $outerBoxRadius 0 0;
+    box-shadow: inset 0 -2px 0 $activeDarkBlue;
+    z-index: 1;
+    @include transform(translateY($formHeight/2));
+    @include user-select(none);
+
+    img, div {
+        @include inlineBlock;
+    }
+
+}
+
+.serviceIcon {
+    width: 57px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.serviceDescWrap {
+    position: relative;
+    margin-left: 15px;
+}
+
+.dropdownWrap {
+
+    &.active {
+
+        .dropdown {
+            position: relative;
+            border-radius: $innerBoxRadius $innerBoxRadius 0 0;
+            box-shadow: none;
+            z-index: 2;
+
+            &:hover {
+                box-shadow: none;
+            }
+
+            &:active {
+                box-shadow: none;
+            }
+        }
+
+        .dropdownSelect {
+            visibility: visible;
+            opacity: 1;
+            z-index: 1;
+        }
+
+    }
+
+    .arrow {
+        margin-left: 0.5em;
+        font-size: 0.5em;
+        vertical-align: middle;
+    }
+
+    .dropdownSelect {
+        width: 130%;
+        position: absolute;
+        background-color: $activeDarkBlue;
+        border-radius: 0 $innerBoxRadius $innerBoxRadius $innerBoxRadius;
+        z-index: -1;
+        @include transition(opacity $transitionTime ease);
+        @include invisible;
+
+        li {
+            padding: $innerBoxPadding;
+            cursor: pointer;
+
+            &:first-child {
+                border-radius: 0 $innerBoxRadius 0 0;
+            }
+
+            &:last-child {
+                border-radius: 0 0 $innerBoxRadius $innerBoxRadius;
+            }
+
+            &:hover {
+                background-color: $hoverDarkBlue;
+            }
+
+            &:active {
+                background-color: darken($activeDarkBlue, 4%);
+            }
+        }
+
+    }
+
+}
+
+/* ==========================================================================
+   Form
+   ========================================================================== */
+
+.formWrap {
+    background-color: $darkBlue;
+    @include animation(fadeIn 0.85s forwards 0.5s);
+}
+
+.formRow {
+    width: 100%;
+    margin-bottom: 20px;
+    display: table;
+
+    &:first-child {
+        margin-top: -2px;
+    }
+
+    &:last-child {
+        margin:0;
+    }
+}
+
+.inputWrap {
+    width: 65.5%;
+    cursor: text;
+    @include inlineBlock;
+
+    &.small {
+        width: 30%;
+        float: right;
+
+        .input, .plainInput {
+            text-align: center;
+        }
+
+    }
+
+    &.amount {
+        width: 50.5%;
+
+        .plainInput {
+            width: 59%;
+        }
+
+        .currencyCode {
+            opacity: $dimOpacity;
+        }
+
+    }
+
+    &.currency {
+        width: 45%;
+        float: right;
+    }
+
+    &.cardNum .input {
+        letter-spacing: 0.08em;
+    }
+
+    &.cardCode .input {
+        letter-spacing: 0.6em;
+        text-indent: 0.6em;
+    }
+
+    &.expiry {
+
+        .input {
+            text-align: center;
+        }
+
+        .plainInput {
+            width: 38%;
+            letter-spacing: 0.2em;
+        }
+
+    }
+}
+
+.inputLabel {
+    margin-bottom: 6px;
+    color: #a7a8aa;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    vertical-align: middle;
+
+    span {
+        @include inlineBlock;
+    }
+
+    .textIcon {
+        margin-right: 4px;
+        font: {
+            family: 'IconFont';
+            size: 16px;
+        }
+        @include prefix(font-smoothing, antialiased);
+
+        .cardCode & {
+            font-size: 14px;
+        }
+    }
+
+
+}
+
+.input, .plainInput, .toggleWrap {
+    @include resetInput;
+    span, input, div {
+        @include inlineBlock;
+    }
+}
+
+.input, .toggleWrap {
+    width: 100%;
+    height: 34px;
+    padding: $innerBoxPadding;
+    font-size: 0.9em;
+    background-color: $lightBlue;
+    border-radius: $innerBoxRadius;
+    @include transition(background-color ease $transitionTime);
+
+    &:hover {
+        background-color: $hoverLightBlue;
+        @include transition(background-color ease ($transitionTime) - 0.1s);
+    }
+
+    &:focus, &.focus {
+        background-color: darken($hoverLightBlue, 4%);
+        box-shadow: 0 0 0 1px rgba(0,0,0,0.4), inset 0 0px 2px rgba(0,0,0,0.3);
+    }
+
+}
+
+.plainInput {
+    background-color: transparent;
+}
+
+.toggleWrap {
+
+    position: relative;
+    background-color: $altLightBlue;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $altLightBlue;
+    }
+
+    .toggle {
+        width: 50%;
+        height: 100%;
+        position: absolute;
+        margin: -10px 0 0 -10px;
+        @include background(linear-gradient($hoverLightBlue, $lightBlue) top);
+        border-radius: $innerBoxRadius;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+        z-index: 1;
+        @include transition(background ease $transitionTime);
+    }
+
+    &:hover .toggle {
+        @include background(linear-gradient($hoverLightBlue, $hoverLightBlue) top);
+        @include transition(background-color ease ($transitionTime) - 0.1s);
+    }
+
+    &:active .toggle {
+        @include background(linear-gradient($lightBlue, $lightBlue) top);
+        box-shadow: none;
+    }
+
+    .option {
+        width: 50%;
+        position: relative;
+        left: $innerBoxPadding/2;
+        text-align: center;
+        opacity: $dimOpacity;
+        z-index: 2;
+    }
+
+    .option.active {
+        left: - ($innerBoxPadding/2);
+        opacity: 1;
+    }
+
+}
+
+/* ==========================================================================
+   Submit
+   ========================================================================== */
+
+.submitWrap {
+    background-color: $lightBlue;
+    border-radius: 0 0 $outerBoxRadius $outerBoxRadius;
+    box-shadow: inset 0 2px 0 $activeDarkBlue;
+    $move: 1+$formHeight/2;
+    @include transform(translateY(-$move));
+}
+
+.submit {
+    text-align: center;
+}
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+
+}
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+
+@media print {
+    * {
+        background-color: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
