@@ -37,15 +37,50 @@ textarea {
    Mixins & Document-Wide Variables
    ========================================================================== */
 
-$lightBlue: #485b73;
-$hoverLightBlue: lighten($lightBlue, 10%);
-$altLightBlue: darken($lightBlue, 10%);
+/************* GET RID OF AS SOON AS POSSIBLE ****************/
+
+$darkBG: #485b73;
+$hoverLightBlue: lighten($darkBG, 10%);
+$altLightBlue: darken($darkBG, 10%);
 
 $darkBlue: #2d3948;
 $hoverDarkBlue: darken($darkBlue, 4%);
 $activeDarkBlue: darken($hoverDarkBlue, 4%);
 
-$outerBoxRadius: 12px;
+/************* GET RID OF AS SOON AS POSSIBLE ****************/
+
+$darkBG: rgba(0,0,0,0.2);
+$strokeColour: rgba(0,0,0,0.3);
+$insetHighlightColour: rgba(255,255,255,0.08);
+
+@mixin lightGradient {
+    @include linear-gradient(to top, rgba(255,255,255,0), rgba(255,255,255,0.1));
+}
+
+@mixin btnGradient($state) {
+    $stop1: $darkBG 0%;
+    $stop2: rgba(0,0,0,0.5) 10%;
+    $stop3: rgba(0,0,0,0.1) 100%;
+    @include background-image(linear-gradient(to top, $stop1, $stop2, $stop3));
+    @if $state == 'hover' {
+        $stop2: rgba(0,0,0,0.4) 10%;
+        @include background-image(linear-gradient(to top, $stop1, $stop2, $stop3));
+    } @else if $state == 'active' {
+        @include background-image(linear-gradient(to top, $stop2, $stop2));
+    }
+}
+
+@function darkBG($state) {
+    @if $state == 'default' {
+        @return rgba(0,0,0,0.3);
+    } @else if $state == 'hover' {
+        @return rgba(0,0,0,0.45);
+    } @else if $state == 'active' {
+        @return rgba(0,0,0,0.55);
+    }
+}
+
+$outerBoxRadius: 10px;
 $formHeight: 256px;
 $innerBoxPadding: 10px;
 $innerBoxRadius: 6px;
@@ -115,6 +150,7 @@ $fontFamily: $museoSans300;
 body {
     color: #fff;
     font-family: $fontFamily;
+    @include linear-gradient(to top, #445066, #23252E);
 }
 
 .content {
@@ -130,26 +166,26 @@ body {
 
 .header, .submitWrap {
     @include animation(fadeIn 0.5s forwards, doors 0.5s forwards 0.5s);
+    @include lightGradient;
 }
 
 .button {
     padding: $innerBoxPadding;
-    background-color: $darkBlue;
+    @include btnGradient(default);
     border-radius: $innerBoxRadius;
     $boxShadow: -2px;
-    box-shadow: inset 0 $boxShadow 0 $activeDarkBlue;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.6), inset 0 1px 0 $insetHighlightColour, 0 2px 0 rgba(0,0,0,0.1);
     cursor: pointer;
     @include transition(background-color ease $transitionTime);
 
     &:hover {
-        background-color: $hoverDarkBlue;
-        box-shadow: inset 0 $boxShadow 0 darken($activeDarkBlue, 4%);
+        @include btnGradient('hover');
         @include transition(background-color ease ($transitionTime) - 0.1s);
     }
 
     &:active {
-        background-color: $activeDarkBlue;
-        box-shadow: none;
+        box-shadow: 0 0 0 1px rgba(0,0,0,0.6), inset 0 1px 0 rgba(0,0,0,0.1), 0 2px 0 $insetHighlightColour;
+        @include btnGradient('active');
         @include transform(translateY(1px));
     }
 
@@ -161,9 +197,8 @@ body {
 
 .header {
     position: relative;
-    background-color: $lightBlue;
     border-radius: $outerBoxRadius $outerBoxRadius 0 0;
-    box-shadow: inset 0 -2px 0 $activeDarkBlue;
+    box-shadow: 0 0 0 1px $strokeColour, inset 0 1px 0 $insetHighlightColour;
     z-index: 1;
     @include transform(translateY($formHeight/2));
     @include user-select(none);
@@ -192,15 +227,14 @@ body {
         .dropdown {
             position: relative;
             border-radius: $innerBoxRadius $innerBoxRadius 0 0;
-            box-shadow: none;
             z-index: 2;
 
             &:hover {
-                box-shadow: none;
             }
 
             &:active {
-                box-shadow: none;
+                box-shadow: 0 0 0 1px rgba(0,0,0,0.6), inset 0 1px 0 rgba(0,0,0,0.1);
+                @include transform(translateY(0));
             }
         }
 
@@ -221,8 +255,11 @@ body {
     .dropdownSelect {
         width: 130%;
         position: absolute;
-        background-color: $activeDarkBlue;
+        margin-top: 1px;
+        background-color: #1c1f25;
         border-radius: 0 $innerBoxRadius $innerBoxRadius $innerBoxRadius;
+        $stroke: #13151a;
+        box-shadow: 0 0 0 1px $stroke, 0 2px 10px rgba(0,0,0,0.6);
         z-index: -1;
         @include transition(opacity $transitionTime ease);
         @include invisible;
@@ -240,11 +277,14 @@ body {
             }
 
             &:hover {
-                background-color: $hoverDarkBlue;
+                background-color: #2a2e3a;
+                @include btnGradient('default');
+                box-shadow: 0 1px 0 $stroke, 0 -1px 0 $stroke, inset 0 1px 0 $insetHighlightColour;
             }
 
             &:active {
-                background-color: darken($activeDarkBlue, 4%);
+                @include btnGradient('active');
+                box-shadow: 0 1px 0 $stroke, 0 -1px 0 $stroke;
             }
         }
 
@@ -257,7 +297,8 @@ body {
    ========================================================================== */
 
 .formWrap {
-    background-color: $darkBlue;
+    background-color: rgba(0,0,0,0.2);
+    box-shadow: 1px 0 0 $strokeColour, -1px 0 0 $strokeColour, inset 0 2px 2px rgba(0,0,0,0.2), inset 0 0 5px rgba(0,0,0,0.05);
     @include animation(fadeIn 0.85s forwards 0.5s);
 }
 
@@ -354,8 +395,6 @@ body {
             font-size: 14px;
         }
     }
-
-
 }
 
 .input, .plainInput, .toggleWrap {
@@ -370,20 +409,19 @@ body {
     height: 34px;
     padding: $innerBoxPadding;
     font-size: 0.9em;
-    background-color: $lightBlue;
+    background-color: darkBG('default');
     border-radius: $innerBoxRadius;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4), inset 0 2px 2px rgba(0,0,0,0.2), 0 1px 0 $insetHighlightColour;
     @include transition(background-color ease $transitionTime);
 
     &:hover {
-        background-color: $hoverLightBlue;
-        @include transition(background-color ease ($transitionTime) - 0.1s);
+        background-color: darkBG('hover');
     }
 
     &:focus, &.focus {
-        background-color: darken($hoverLightBlue, 4%);
-        box-shadow: 0 0 0 1px rgba(0,0,0,0.4), inset 0 0px 2px rgba(0,0,0,0.3);
+        background-color: darkBG('active');
+        box-shadow: inset 0 0 0 1px rgba(0,0,0,0.6), inset 0 2px 2px rgba(0,0,0,0.2), 0 1px 0 $insetHighlightColour;
     }
-
 }
 
 .plainInput {
@@ -391,35 +429,33 @@ body {
 }
 
 .toggleWrap {
-
     position: relative;
-    background-color: $altLightBlue;
+    background-color: darkBG('default');
     cursor: pointer;
 
     &:hover {
-        background-color: $altLightBlue;
+        background-color: darkBG('default');
     }
 
     .toggle {
         width: 50%;
-        height: 100%;
+        height: 32px;
         position: absolute;
-        margin: -10px 0 0 -10px;
-        @include background(linear-gradient($hoverLightBlue, $lightBlue) top);
-        border-radius: $innerBoxRadius;
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+        margin: -9px 0 0 -9px;
+        @include background-image(linear-gradient(to top, rgba(255,255,255,0) 50%, rgba(255,255,255,0.1) 100%));
+        border-radius: $innerBoxRadius - 1;
+        box-shadow: inset 0 1px 0 $insetHighlightColour, 0 0 0 1px rgba(0,0,0,0.3);
         z-index: 1;
         @include transition(background ease $transitionTime);
     }
 
     &:hover .toggle {
-        @include background(linear-gradient($hoverLightBlue, $hoverLightBlue) top);
-        @include transition(background-color ease ($transitionTime) - 0.1s);
+        @include background-image(linear-gradient(to top, rgba(255,255,255,0.03) 50%, rgba(255,255,255,0.2) 100%));
     }
 
     &:active .toggle {
-        @include background(linear-gradient($lightBlue, $lightBlue) top);
-        box-shadow: none;
+        @include background(linear-gradient($darkBG, $darkBG) top);
+        box-shadow: 0 0 0 1px rgba(0,0,0,0.3);
     }
 
     .option {
@@ -443,9 +479,8 @@ body {
    ========================================================================== */
 
 .submitWrap {
-    background-color: $lightBlue;
     border-radius: 0 0 $outerBoxRadius $outerBoxRadius;
-    box-shadow: inset 0 2px 0 $activeDarkBlue;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 0 0 1px $strokeColour, inset 0 1px 0 $insetHighlightColour;
     $move: 1+$formHeight/2;
     @include transform(translateY(-$move));
 }
