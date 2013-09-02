@@ -1,1 +1,5 @@
 .DS_Store
+.gitignore
+.hammer-ignore
+Build/
+sftp-config.json
