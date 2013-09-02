@@ -1,5 +1,10 @@
 .DS_Store
-.gitignore
-.hammer-ignore
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 Build/
 sftp-config.json
+.hammer-ignore
