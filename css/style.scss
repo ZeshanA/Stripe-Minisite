@@ -157,6 +157,7 @@ body {
     width: 320px;
     height: 424px;
     @include pageCentre;
+    @include user-select(none);
 }
 
 .header, .formWrap, .submitWrap {
@@ -367,6 +368,14 @@ body {
         .plainInput {
             width: 38%;
             letter-spacing: 0.2em;
+        }
+
+    }
+
+    &.error {
+
+        .inputLabel {
+            color: #FF5656;
         }
 
     }
